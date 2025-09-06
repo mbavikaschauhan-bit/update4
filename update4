@@ -706,9 +706,9 @@
                                                 <div><label for="entry-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Date & Time</label><input name="entryDate" type="datetime-local" id="entry-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" required></div>
                                                 <div><label for="entry-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Price</label><input name="entryPrice" type="number" step="any" id="entry-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00" required></div>
                                                 <div><label for="quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Quantity</label><input name="quantity" type="number" id="quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0" required></div>
-                                                <div class="border-t pt-4" style="border-color: var(--border-color);">
+                                                <div class="p-3 rounded-lg" style="background-color: var(--bg-secondary);">
                                                     <div class="flex justify-between items-center">
-                                                        <span class="text-sm font-semibold" style="color: var(--text-secondary);">Total Amount</span>
+                                                        <span class="text-sm font-medium" style="color: var(--text-muted);">Total Amount</span>
                                                         <span id="total-amount" class="font-bold text-lg" style="color: var(--text-primary);">₹0.00</span>
                                                     </div>
                                                 </div>
@@ -720,16 +720,14 @@
                                                 <div><label for="exit-quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Quantity</label><input name="exitQuantity" type="number" id="exit-quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0"></div>
                                                 <div><label for="brokerage" class="block text-sm font-medium" style="color: var(--text-secondary);">Brokerage</label><input name="brokerage" type="number" step="any" id="brokerage" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
                                                 <div><label for="other-fees" class="block text-sm font-medium" style="color: var(--text-secondary);">Charges</label><input name="otherFees" type="number" step="any" id="other-fees" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                                <div class="border-t pt-4" style="border-color: var(--border-color);">
-                                                    <div class="space-y-2">
-                                                        <div class="flex justify-between items-center">
-                                                            <span class="text-sm font-bold" style="color: var(--text-secondary);">P&L Amount</span>
-                                                            <span id="pnl-amount" class="font-bold text-lg" style="color: var(--text-primary);">₹0.00</span>
-                                                        </div>
-                                                        <div class="flex justify-between items-center">
-                                                            <span class="text-sm font-bold" style="color: var(--text-secondary);">P&L (%)</span>
-                                                            <span id="pnl-percent" class="font-bold text-lg" style="color: var(--text-primary);">0.00%</span>
-                                                        </div>
+                                                <div class="p-3 rounded-lg space-y-2" style="background-color: var(--bg-secondary);">
+                                                    <div class="flex justify-between items-center">
+                                                        <span class="text-sm font-medium" style="color: var(--text-muted);">P&L Amount</span>
+                                                        <span id="pnl-amount" class="font-bold text-lg" style="color: var(--text-primary);">₹0.00</span>
+                                                    </div>
+                                                    <div class="flex justify-between items-center">
+                                                        <span class="text-sm font-medium" style="color: var(--text-muted);">P&L (%)</span>
+                                                        <span id="pnl-percent" class="font-bold text-lg" style="color: var(--text-primary);">0.00%</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -740,8 +738,24 @@
                                          <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Risk & Strategy</h3>
                                          <div class="space-y-6">
                                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                <div><label for="stop-loss" class="block text-sm font-medium" style="color: var(--text-secondary);">Stop Loss</label><input name="stopLoss" type="number" step="any" id="stop-loss" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                                <div><label for="target" class="block text-sm font-medium" style="color: var(--text-secondary);">Target Price</label><input name="target" type="number" step="any" id="target" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
+                                                <div>
+                                                    <label for="stop-loss" class="flex justify-between items-center text-sm font-medium" style="color: var(--text-secondary);">
+                                                        <span>Stop Loss</span>
+                                                        <span id="stop-loss-percent" class="font-medium text-red-500"></span>
+                                                    </label>
+                                                    <div class="relative mt-1">
+                                                        <input name="stopLoss" type="number" step="any" id="stop-loss" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00">
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <label for="target" class="flex justify-between items-center text-sm font-medium" style="color: var(--text-secondary);">
+                                                        <span>Target Price</span>
+                                                        <span id="target-percent" class="font-medium text-green-500"></span>
+                                                    </label>
+                                                    <div class="relative mt-1">
+                                                        <input name="target" type="number" step="any" id="target" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                 <div><label for="strategy" class="block text-sm font-medium" style="color: var(--text-secondary);">Strategy Tag</label><select name="strategy" id="strategy" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Price Action</option><option>Trend Following</option><option>Nifty Breakout</option><option>Other</option></select></div>
@@ -1850,11 +1864,11 @@
 
             const exitPrice = parseFloat(document.getElementById('exit-price').value) || 0;
             const exitQuantity = parseInt(document.getElementById('exit-quantity').value, 10) || quantity;
-            const direction = document.querySelector('#direction-group .active')?.dataset.value || 'Long';
+            const direction = document.querySelector('#direction-group .active-long, #direction-group .active-short')?.dataset.value || 'Long';
 
             if (exitPrice > 0 && entryPrice > 0 && exitQuantity > 0) {
                 const pnlAmount = (exitPrice - entryPrice) * exitQuantity * (direction === 'Short' ? -1 : 1);
-                const pnlPercent = (pnlAmount / (entryPrice * exitQuantity)) * 100;
+                const pnlPercent = (entryPrice * exitQuantity !== 0) ? (pnlAmount / (entryPrice * exitQuantity)) * 100 : 0;
                 
                 const pnlAmountEl = document.getElementById('pnl-amount');
                 pnlAmountEl.textContent = formatCurrency(pnlAmount);
@@ -1873,10 +1887,30 @@
                 pnlPercentEl.textContent = '0.00%';
                 pnlPercentEl.className = `font-bold text-lg`;
             }
+
+            // --- Stop Loss & Target Percentage Calculation ---
+            const stopLoss = parseFloat(document.getElementById('stop-loss').value) || 0;
+            const target = parseFloat(document.getElementById('target').value) || 0;
+            const stopLossPercentEl = document.getElementById('stop-loss-percent');
+            const targetPercentEl = document.getElementById('target-percent');
+
+            if (entryPrice > 0 && stopLoss > 0) {
+                const slPercent = Math.abs(((entryPrice - stopLoss) / entryPrice) * 100);
+                stopLossPercentEl.textContent = `(${slPercent.toFixed(2)}%)`;
+            } else {
+                stopLossPercentEl.textContent = '';
+            }
+
+            if (entryPrice > 0 && target > 0) {
+                const targetPercent = Math.abs(((target - entryPrice) / entryPrice) * 100);
+                targetPercentEl.textContent = `(+${targetPercent.toFixed(2)}%)`;
+            } else {
+                targetPercentEl.textContent = '';
+            }
         };
         
         tradeForm.addEventListener('input', (e) => {
-            if (['entry-price', 'quantity', 'brokerage', 'other-fees', 'exit-price', 'exit-quantity'].includes(e.target.id)) {
+            if (['entry-price', 'quantity', 'brokerage', 'other-fees', 'exit-price', 'exit-quantity', 'stop-loss', 'target'].includes(e.target.id)) {
                 updateCalculations();
             }
         });
@@ -1966,9 +2000,9 @@
             
             const tradeData = {
                 // New Fields
-                tradingStyle: document.querySelector('#trading-style-group .active')?.dataset.value,
-                segment: document.querySelector('#segment-group .active')?.dataset.value,
-                direction: document.querySelector('#direction-group .active')?.dataset.value,
+                tradingStyle: document.querySelector('#trading-style-group .active-green')?.dataset.value,
+                segment: document.querySelector('#segment-group .active-green')?.dataset.value,
+                direction: document.querySelector('#direction-group .active-long, #direction-group .active-short')?.dataset.value,
                 exitQuantity: document.getElementById('exit-quantity').value ? parseInt(document.getElementById('exit-quantity').value, 10) : null,
                 pnlAmount: parseFloat(document.getElementById('pnl-amount').textContent.replace(/[₹,]/g, '')) || 0,
                 pnlPercent: parseFloat(document.getElementById('pnl-percent').textContent.replace('%', '')) || 0,
@@ -1990,7 +2024,7 @@
                 updatedAt: serverTimestamp(),
                 
                 // Keep tradeType for older reports if needed, can be inferred from tradingStyle
-                tradeType: ['Scalping', 'Intraday'].includes(document.querySelector('#trading-style-group .active')?.dataset.value) ? 'Intraday' : 'Positional'
+                tradeType: ['Scalping', 'Intraday'].includes(document.querySelector('#trading-style-group .active-green')?.dataset.value) ? 'Intraday' : 'Positional'
             };
 
 
@@ -2066,7 +2100,13 @@
 
         document.getElementById('trade-history-tbody').addEventListener('click', async (e) => {
              const button = e.target.closest('button');
-              if (action === 'edit') {
+             if (!button || !appState.user) return;
+             
+             const action = button.dataset.action;
+             const tradeId = button.dataset.id;
+             const userId = appState.user.uid;
+             
+             if (action === 'edit') {
                  const trade = appState.trades.find(t => t.id === tradeId);
                  if (trade) {
                     clearTradeForm(); // Reset form to defaults first
@@ -2082,7 +2122,13 @@
                         document.querySelector('#segment-group .active-green')?.classList.remove('active-green');
                         document.querySelector(`#segment-group button[data-value="${trade.segment}"]`)?.classList.add('active-green');
                      }
-                     if(trade.direction) document.querySelector(`#direction-group button[data-value="${trade.direction}"]`)?.classList.add('active');
+                     if(trade.direction) {
+                        document.querySelector('#direction-group .active-long, #direction-group .active-short')?.classList.remove('active-long', 'active-short');
+                        const directionBtn = document.querySelector(`#direction-group button[data-value="${trade.direction}"]`);
+                        if (directionBtn) {
+                           directionBtn.classList.add(trade.direction === 'Long' ? 'active-long' : 'active-short');
+                        }
+                     }
                      
                      document.getElementById('entry-date').value = trade.entryDate.toDate().toISOString().slice(0, 16);
                      document.getElementById('exit-date').value = trade.exitDate ? trade.exitDate.toDate().toISOString().slice(0, 16) : '';
@@ -3531,6 +3577,11 @@
     </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
