@@ -1063,6 +1063,40 @@
         <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
     </div>
 
+    <!-- Trade Saved Success Modal -->
+    <div id="trade-saved-modal" class="modal-overlay hidden">
+        <div class="w-full max-w-md m-4 rounded-lg shadow-xl text-center" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+            <div class="p-8">
+                <div class="w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-green-100 mb-4">
+                    <i data-feather="check-circle" class="h-8 w-8 text-green-600"></i>
+                </div>
+                <h3 class="text-xl font-bold" style="color: var(--text-primary);">Trade Saved Successfully!</h3>
+                <p class="text-sm mt-2 mb-6" style="color: var(--text-secondary);">The more you write, the more you grow. Stay focused!</p>
+
+                <div class="p-4 rounded-lg" style="background-color: var(--bg-secondary);">
+                    <h4 class="font-semibold text-md mb-4" style="color: var(--text-primary);">Comparison with Previous Day's P&L</h4>
+                    <div class="flex justify-around items-center mb-4">
+                        <div>
+                            <p class="text-xs" style="color: var(--text-muted);">Today's P&L</p>
+                            <p id="tsm-today-pnl" class="font-bold text-lg text-green-500">+₹0.00</p>
+                        </div>
+                        <div class="border-l h-10" style="border-color: var(--border-color);"></div>
+                        <div>
+                            <p class="text-xs" style="color: var(--text-muted);">Yesterday's P&L</p>
+                            <p id="tsm-yesterday-pnl" class="font-bold text-lg text-green-500">+₹0.00</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center text-xs p-2 rounded" style="background-color: var(--bg-primary);">
+                        <i data-feather="arrow-up" class="h-4 w-4 text-green-500 mr-1"></i>
+                        <span id="tsm-comparison-text" style="color: var(--text-secondary);">You saw an increase of ₹0.00 in your pnl.</span>
+                    </div>
+                </div>
+
+                <button id="trade-saved-close-btn" class="mt-6 w-full btn-primary font-semibold py-2 px-6 rounded-md shadow-sm">Keep Journaling</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Confirmation Modal -->
     <div id="confirmation-modal" class="modal-overlay hidden">
         <div class="w-full max-w-sm m-4 rounded-lg shadow-xl" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
@@ -1355,6 +1389,19 @@
             return d.toLocaleDateString('en-GB', options);
         };
         
+        const countTradingDays = (startDate, endDate) => {
+            let count = 0;
+            const curDate = new Date(startDate.getTime());
+            while (curDate <= endDate) {
+                const dayOfWeek = curDate.getDay();
+                if (dayOfWeek !== 0 && dayOfWeek !== 6) { // 0=Sun, 6=Sat
+                    count++;
+                }
+                curDate.setDate(curDate.getDate() + 1);
+            }
+            return count;
+        };
+        
         const calculateNetPnl = (trade) => {
             if (!trade.exitPrice || !trade.exitDate) return 0;
             const grossPnl = (trade.exitPrice - trade.entryPrice) * trade.quantity * (trade.direction === 'Short' ? -1 : 1);
@@ -1362,6 +1409,60 @@
             const otherFees = trade.otherFees || 0;
             return grossPnl - brokerage - otherFees;
         };
+
+        // --- Trade Saved Modal ---
+        const tradeSavedModal = document.getElementById('trade-saved-modal');
+        const showTradeSavedModal = () => {
+            const allTrades = appState.trades.filter(t => t.exitDate);
+            const now = new Date();
+            const todayStr = now.toISOString().split('T')[0];
+            
+            const yesterday = new Date();
+            yesterday.setDate(now.getDate() - 1);
+            const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+            let todaysPnl = 0;
+            let yesterdaysPnl = 0;
+
+            allTrades.forEach(trade => {
+                const tradeDateStr = trade.exitDate.toDate().toISOString().split('T')[0];
+                const pnl = calculateNetPnl(trade);
+                if (tradeDateStr === todayStr) {
+                    todaysPnl += pnl;
+                } else if (tradeDateStr === yesterdayStr) {
+                    yesterdaysPnl += pnl;
+                }
+            });
+
+            const pnlDifference = todaysPnl - yesterdaysPnl;
+
+            const todayPnlEl = document.getElementById('tsm-today-pnl');
+            todayPnlEl.textContent = `${todaysPnl >= 0 ? '+' : ''}${formatCurrency(todaysPnl)}`;
+            todayPnlEl.className = `font-bold text-lg ${todaysPnl >= 0 ? 'text-green-500' : 'text-red-500'}`;
+            
+            const yesterdayPnlEl = document.getElementById('tsm-yesterday-pnl');
+            yesterdayPnlEl.textContent = `${yesterdaysPnl >= 0 ? '+' : ''}${formatCurrency(yesterdaysPnl)}`;
+            yesterdayPnlEl.className = `font-bold text-lg ${yesterdaysPnl >= 0 ? 'text-green-500' : 'text-red-500'}`;
+
+            const comparisonTextEl = document.getElementById('tsm-comparison-text');
+            const comparisonIconContainer = comparisonTextEl.previousElementSibling;
+            
+            if (pnlDifference >= 0) {
+                comparisonTextEl.textContent = `You saw an increase of ${formatCurrency(pnlDifference)} in your pnl compared to the last session!`;
+                comparisonIconContainer.innerHTML = `<i data-feather="arrow-up" class="h-4 w-4 text-green-500 mr-1"></i>`;
+            } else {
+                comparisonTextEl.textContent = `You saw a decrease of ${formatCurrency(Math.abs(pnlDifference))} in your pnl compared to the last session.`;
+                comparisonIconContainer.innerHTML = `<i data-feather="arrow-down" class="h-4 w-4 text-red-500 mr-1"></i>`;
+            }
+            
+            tradeSavedModal.classList.remove('hidden');
+            feather.replace();
+        };
+
+        document.getElementById('trade-saved-close-btn').addEventListener('click', () => {
+            tradeSavedModal.classList.add('hidden');
+            navigateTo('trade-history'); // Navigate after closing modal
+        });
 
         // --- Confirmation Modal ---
         let confirmCallback = null;
@@ -1478,6 +1579,7 @@
             renderCalendar();
             renderReports();
             renderStatement();
+            renderChallenge(); // Add this line to update the challenge on new trades
         };
 
         const updateLedgerDependentUI = () => {
@@ -1530,7 +1632,7 @@
                 } else {
                     appState.challenge = null;
                 }
-                updateAllUI();
+                renderChallenge(); // Directly call renderChallenge to update its state
             });
 
             // --- Challenge History Listener ---
@@ -1813,16 +1915,15 @@
                     // Update existing trade
                     const tradeRef = doc(db, `artifacts/${appId}/users/${userId}/trades`, tradeId);
                     await updateDoc(tradeRef, tradeData);
-                    showToast("Trade updated successfully!", "success");
+                    showTradeSavedModal();
                 } else {
                     // Add new trade
                     tradeData.createdAt = serverTimestamp();
                     const tradesRef = collection(db, `artifacts/${appId}/users/${userId}/trades`);
                     await addDoc(tradesRef, tradeData);
-                    showToast("Trade added successfully!", "success");
+                    showTradeSavedModal();
                 }
                 clearTradeForm();
-                navigateTo('trade-history');
             } catch (error) {
                 console.error("Error saving trade:", error);
                 showToast(`Error saving trade: ${error.message}`, "error");
@@ -2480,6 +2581,47 @@
             });
         };
         
+        const applyStatementFilters = () => {
+            const typeFilter = document.getElementById('filter-type').value.toLowerCase();
+            const strategyFilter = document.getElementById('filter-strategy').value;
+            const startDateFilter = document.getElementById('filter-start-date').value;
+            const endDateFilter = document.getElementById('filter-end-date').value;
+
+            const rows = document.querySelectorAll('#statement-tbody tr');
+
+            rows.forEach(row => {
+                const rowType = row.dataset.type;
+                const rowStrategy = row.dataset.strategy;
+                const rowDate = row.dataset.date;
+
+                let show = true;
+
+                if (typeFilter !== 'all types' && rowType !== typeFilter.replace(' ', '')) {
+                    show = false;
+                }
+                if (strategyFilter !== 'All Strategies' && rowStrategy !== strategyFilter) {
+                    show = false;
+                }
+                if (startDateFilter && rowDate < startDateFilter) {
+                    show = false;
+                }
+                if (endDateFilter && rowDate > endDateFilter) {
+                    show = false;
+                }
+
+                row.style.display = show ? '' : 'none';
+            });
+        };
+
+        document.getElementById('apply-filter-btn').addEventListener('click', applyStatementFilters);
+        document.getElementById('reset-filter-btn').addEventListener('click', () => {
+            document.getElementById('filter-type').value = 'All Types';
+            document.getElementById('filter-strategy').value = 'All Strategies';
+            document.getElementById('filter-start-date').value = '';
+            document.getElementById('filter-end-date').value = '';
+            applyStatementFilters(); // Re-apply to show all
+        });
+        
         // --- CHALLENGE PAGE ---
         const challengeModal = document.getElementById('challenge-modal');
         const challengeForm = document.getElementById('challenge-form');
@@ -2607,12 +2749,23 @@
             // --- Date Calculations ---
             const now = new Date();
             const challengeStartDate = challenge.createdAt.toDate(); // No longer need a fallback
-            const challengeEndDate = new Date(challengeStartDate);
-            challengeEndDate.setDate(challengeStartDate.getDate() + challenge.timeframe);
+            
+            const calendarDaysForEndDate = challenge.timeframe;
+            let tempEndDate = new Date(challengeStartDate);
+            let tradingDaysCounted = 0;
+            while(tradingDaysCounted < calendarDaysForEndDate){
+                tempEndDate.setDate(tempEndDate.getDate() + 1);
+                const dayOfWeek = tempEndDate.getDay();
+                if(dayOfWeek !== 0 && dayOfWeek !== 6){
+                    tradingDaysCounted++;
+                }
+            }
+            const challengeEndDate = tempEndDate;
 
-            const totalDays = challenge.timeframe;
-            const daysPassed = Math.max(0, Math.floor((now - challengeStartDate) / (1000 * 60 * 60 * 24)));
-            const daysRemaining = Math.max(0, totalDays - daysPassed);
+
+            const tradingDaysPassed = countTradingDays(challengeStartDate, now);
+            const totalTradingDays = countTradingDays(challengeStartDate, challengeEndDate);
+            const daysRemaining = Math.max(0, totalTradingDays - tradingDaysPassed);
 
             // --- Filter Data for Challenge Period ---
             const challengeTrades = trades
@@ -2663,21 +2816,21 @@
             // --- Check for challenge completion or failure ---
             const finalStats = {
                 finalCapital: currentCapital,
-                daysTaken: daysPassed,
+                daysTaken: tradingDaysPassed,
                 finalWinRate: winRate,
                 finalAvgRR: avgRR,
                 finalMaxDrawdown: maxDrawdown,
                 highestProfit: highestProfitDay
             };
 
-            if (currentCapital >= challenge.targetCapital) {
+            if (challenge.status === 'active' && currentCapital >= challenge.targetCapital) {
                 completeChallenge('completed', finalStats);
-                return; // Stop rendering the active view
+                return; // Stop rendering the active view to avoid flicker
             }
 
-            if (now > challengeEndDate) {
+            if (challenge.status === 'active' && now > challengeEndDate) {
                 completeChallenge('failed', finalStats);
-                return; // Stop rendering the active view
+                return; // Stop rendering the active view to avoid flicker
             }
 
 
@@ -2695,7 +2848,7 @@
             document.getElementById('challenge-max-drawdown').textContent = `${maxDrawdown.toFixed(2)}%`;
 
             // --- Update Chart ---
-            const ctx = document.getElementById('challengeProgressChart')?.getContext('d');
+            const ctx = document.getElementById('challengeProgressChart')?.getContext('2d');
             if (ctx) {
                 if (challengeChart) challengeChart.destroy();
                 challengeChart = new Chart(ctx, {
@@ -3289,6 +3442,10 @@
     </script>
 </body>
 </html>
+
+
+
+
 
 
 
