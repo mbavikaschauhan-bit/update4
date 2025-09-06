@@ -706,6 +706,24 @@
                                                 <div><label for="entry-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Date & Time</label><input name="entryDate" type="datetime-local" id="entry-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" required></div>
                                                 <div><label for="entry-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Price</label><input name="entryPrice" type="number" step="any" id="entry-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00" required></div>
                                                 <div><label for="quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Quantity</label><input name="quantity" type="number" id="quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0" required></div>
+                                                <div>
+                                                    <label for="stop-loss" class="flex justify-between items-center text-sm font-medium" style="color: var(--text-secondary);">
+                                                        <span>Stop Loss</span>
+                                                        <span id="stop-loss-percent" class="font-medium text-red-500"></span>
+                                                    </label>
+                                                    <div class="relative mt-1">
+                                                        <input name="stopLoss" type="number" step="any" id="stop-loss" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00">
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <label for="target" class="flex justify-between items-center text-sm font-medium" style="color: var(--text-secondary);">
+                                                        <span>Target Price</span>
+                                                        <span id="target-percent" class="font-medium text-green-500"></span>
+                                                    </label>
+                                                    <div class="relative mt-1">
+                                                        <input name="target" type="number" step="any" id="target" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00">
+                                                    </div>
+                                                </div>
                                                 <div class="p-3 rounded-lg" style="background-color: var(--bg-secondary);">
                                                     <div class="flex justify-between items-center">
                                                         <span class="text-sm font-medium" style="color: var(--text-muted);">Total Amount</span>
@@ -737,26 +755,6 @@
                                     <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
                                          <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Risk & Strategy</h3>
                                          <div class="space-y-6">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                <div>
-                                                    <label for="stop-loss" class="flex justify-between items-center text-sm font-medium" style="color: var(--text-secondary);">
-                                                        <span>Stop Loss</span>
-                                                        <span id="stop-loss-percent" class="font-medium text-red-500"></span>
-                                                    </label>
-                                                    <div class="relative mt-1">
-                                                        <input name="stopLoss" type="number" step="any" id="stop-loss" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <label for="target" class="flex justify-between items-center text-sm font-medium" style="color: var(--text-secondary);">
-                                                        <span>Target Price</span>
-                                                        <span id="target-percent" class="font-medium text-green-500"></span>
-                                                    </label>
-                                                    <div class="relative mt-1">
-                                                        <input name="target" type="number" step="any" id="target" class="w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00">
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                 <div><label for="strategy" class="block text-sm font-medium" style="color: var(--text-secondary);">Strategy Tag</label><select name="strategy" id="strategy" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Price Action</option><option>Trend Following</option><option>Nifty Breakout</option><option>Other</option></select></div>
                                                 <div><label for="outcome-summary" class="block text-sm font-medium" style="color: var(--text-secondary);">Outcome Summary</label><select name="outcomeSummary" id="outcome-summary" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Select Outcome Summary</option><option>Target Hit</option><option>Stop Loss Hit</option><option>Exited Early (Profit)</option><option>Exited Early (Loss)</option><option>Break Even</option></select></div>
@@ -3577,6 +3575,7 @@
     </script>
 </body>
 </html>
+
 
 
 
