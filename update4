@@ -412,6 +412,37 @@
              color: #0d1b2a;
          }
 
+        /* Direction Button Styles */
+        #direction-group button {
+            background-color: #f0f0f0; /* Lighter grey for better text contrast */
+            color: #333;
+            border: 1px solid #ccc;
+        }
+        #direction-group button.active-long {
+            background-color: #006400;
+            color: white;
+            border-color: #005000;
+        }
+        #direction-group button.active-short {
+            background-color: #ff0000;
+            color: white;
+            border-color: #cc0000;
+        }
+
+        /* Segment & Style Button Styles */
+        #segment-group button,
+        #trading-style-group button {
+            background-color: #d3d3d3;
+            color: #333;
+            border: 1px solid #bbb;
+        }
+        #segment-group button.active-green,
+        #trading-style-group button.active-green {
+            background-color: #006400;
+            color: white;
+            border-color: #005000;
+        }
+
 
     </style>
 </head>
@@ -638,7 +669,7 @@
                                             <div>
                                                 <label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Direction</label>
                                                 <div id="direction-group" class="form-btn-group grid grid-cols-2 gap-2">
-                                                    <button type="button" data-value="Long" class="active flex items-center justify-center gap-2"><i data-feather="arrow-up" class="inline-block h-4 w-4"></i>Long</button>
+                                                    <button type="button" data-value="Long" class="active-long flex items-center justify-center gap-2"><i data-feather="arrow-up" class="inline-block h-4 w-4"></i>Long</button>
                                                     <button type="button" data-value="Short" class="flex items-center justify-center gap-2"><i data-feather="arrow-down" class="inline-block h-4 w-4"></i>Short</button>
                                                 </div>
                                             </div>
@@ -648,7 +679,7 @@
                                                     <button type="button" data-value="Equity">Equity</button>
                                                     <button type="button" data-value="F&O">F&O</button>
                                                     <button type="button" data-value="Commodity" class="flex items-center justify-center">Commodity</button>
-                                                    <button type="button" data-value="Currency" class="active">Currency</button>
+                                                    <button type="button" data-value="Currency">Currency</button>
                                                 </div>
                                             </div>
                                             <div>
@@ -658,7 +689,7 @@
                                                     <button type="button" data-value="Intraday">Intraday</button>
                                                     <button type="button" data-value="Swing">Swing</button>
                                                     <button type="button" data-value="Position">Position</button>
-                                                    <button type="button" data-value="Long-Term" class="active col-span-2">Long-Term</button>
+                                                    <button type="button" data-value="Long-Term" class="col-span-2">Long-Term</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1853,12 +1884,26 @@
         document.querySelectorAll('.form-btn-group').forEach(group => {
             group.addEventListener('click', (e) => {
                 const button = e.target.closest('button');
-                if (button) {
+                if (!button) return;
+
+                if (group.id === 'direction-group') {
+                    // Specific logic for direction buttons
+                    group.querySelectorAll('button').forEach(btn => {
+                        btn.classList.remove('active-long', 'active-short');
+                    });
+                    if (button.dataset.value === 'Long') {
+                        button.classList.add('active-long');
+                    } else {
+                        button.classList.add('active-short');
+                    }
+                    updateCalculations(); // Recalculate P&L on direction change
+                } else if (group.id === 'segment-group' || group.id === 'trading-style-group') {
+                    group.querySelectorAll('button').forEach(btn => btn.classList.remove('active-green'));
+                    button.classList.add('active-green');
+                } else {
+                    // Generic logic for any other button groups
                     group.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
-                     if(group.id === 'direction-group') { // Recalculate P&L if direction changes
-                        updateCalculations();
-                    }
                 }
             });
         });
@@ -1868,11 +1913,15 @@
              document.getElementById('trade-id').value = '';
              document.getElementById('trade-form-title').textContent = 'Add New Trade';
              document.querySelectorAll('.form-btn-group').forEach(group => {
-                 group.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-                 // Set default active buttons
-                 if (group.id === 'trading-style-group') group.querySelector('[data-value="Long-Term"]').classList.add('active');
-                 if (group.id === 'segment-group') group.querySelector('[data-value="Currency"]').classList.add('active');
-                 if (group.id === 'direction-group') group.querySelector('[data-value="Long"]').classList.add('active');
+                 if (group.id === 'direction-group') {
+                     group.querySelectorAll('button').forEach(btn => btn.classList.remove('active-long', 'active-short'));
+                     group.querySelector('[data-value="Long"]').classList.add('active-long');
+                 } else {
+                     group.querySelectorAll('button').forEach(btn => btn.classList.remove('active', 'active-green'));
+                     // Set default active buttons for other groups
+                     if (group.id === 'trading-style-group') group.querySelector('[data-value="Long-Term"]').classList.add('active-green');
+                     if (group.id === 'segment-group') group.querySelector('[data-value="Currency"]').classList.add('active-green');
+                 }
              });
              updateCalculations();
         };
@@ -2017,13 +2066,7 @@
 
         document.getElementById('trade-history-tbody').addEventListener('click', async (e) => {
              const button = e.target.closest('button');
-             if (!button || !appState.user) return;
-             
-             const action = button.dataset.action;
-             const tradeId = button.dataset.id;
-             const userId = appState.user.uid;
-             
-             if (action === 'edit') {
+              if (action === 'edit') {
                  const trade = appState.trades.find(t => t.id === tradeId);
                  if (trade) {
                     clearTradeForm(); // Reset form to defaults first
@@ -2031,8 +2074,14 @@
                      document.getElementById('asset-input').value = trade.asset;
                      
                      // Set active buttons
-                     if(trade.tradingStyle) document.querySelector(`#trading-style-group button[data-value="${trade.tradingStyle}"]`)?.classList.add('active');
-                     if(trade.segment) document.querySelector(`#segment-group button[data-value="${trade.segment}"]`)?.classList.add('active');
+                     if(trade.tradingStyle) {
+                        document.querySelector('#trading-style-group .active-green')?.classList.remove('active-green');
+                        document.querySelector(`#trading-style-group button[data-value="${trade.tradingStyle}"]`)?.classList.add('active-green');
+                     }
+                     if(trade.segment) {
+                        document.querySelector('#segment-group .active-green')?.classList.remove('active-green');
+                        document.querySelector(`#segment-group button[data-value="${trade.segment}"]`)?.classList.add('active-green');
+                     }
                      if(trade.direction) document.querySelector(`#direction-group button[data-value="${trade.direction}"]`)?.classList.add('active');
                      
                      document.getElementById('entry-date').value = trade.entryDate.toDate().toISOString().slice(0, 16);
@@ -3482,6 +3531,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
