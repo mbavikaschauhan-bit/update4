@@ -615,98 +615,108 @@
 
                     <!-- Add Trade Page -->
                     <div id="add-trade" class="page">
-                        <div class="max-w-4xl mx-auto">
-                            <form id="manual-trade-form" class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                <input type="hidden" id="trade-id" name="tradeId">
-                                <h2 id="trade-form-title" class="text-2xl font-bold mb-6" style="color: var(--text-primary);">Add New Trade</h2>
+                        <form id="manual-trade-form" class="space-y-8 max-w-6xl mx-auto">
+                            <input type="hidden" id="trade-id" name="tradeId">
+                            
+                            <div>
+                                <h2 id="trade-form-title" class="text-3xl font-bold" style="color: var(--text-primary);">Add New Trade</h2>
+                                <p class="text-md mt-1" style="color: var(--text-secondary);">Log your trades with precision to refine your strategy.</p>
+                            </div>
 
-                                <!-- Trading Style -->
-                                <div class="mb-6">
-                                    <label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Select Trading Style</label>
-                                    <div id="trading-style-group" class="form-btn-group flex flex-wrap gap-2">
-                                        <button type="button" data-value="Scalping">Scalping</button>
-                                        <button type="button" data-value="Intraday">Intraday</button>
-                                        <button type="button" data-value="Swing">Swing</button>
-                                        <button type="button" data-value="Position">Position</button>
-                                        <button type="button" data-value="Long-Term" class="active">Long-Term</button>
+                            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                                <!-- Left Column -->
+                                <div class="lg:col-span-1 space-y-8">
+                                     <!-- Trade Details -->
+                                    <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                        <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Trade Details</h3>
+                                        <div class="space-y-6">
+                                            <div class="relative">
+                                                <label for="asset-input" class="block text-sm font-medium" style="color: var(--text-secondary);">Symbol</label>
+                                                <input name="asset" type="text" id="asset-input" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="e.g. RELIANCE, NIFTY 50" required>
+                                                <div id="asset-suggestions" class="absolute z-10 w-full rounded-md mt-1 hidden max-h-48 overflow-y-auto" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"></div>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Direction</label>
+                                                <div id="direction-group" class="form-btn-group grid grid-cols-2 gap-2">
+                                                    <button type="button" data-value="Long" class="active flex items-center justify-center gap-2"><i data-feather="arrow-up" class="inline-block h-4 w-4"></i>Long</button>
+                                                    <button type="button" data-value="Short" class="flex items-center justify-center gap-2"><i data-feather="arrow-down" class="inline-block h-4 w-4"></i>Short</button>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Segment</label>
+                                                <div id="segment-group" class="form-btn-group grid grid-cols-2 gap-2">
+                                                    <button type="button" data-value="Equity">Equity</button>
+                                                    <button type="button" data-value="F&O">F&O</button>
+                                                    <button type="button" data-value="Commodity" class="flex items-center justify-center">Commodity</button>
+                                                    <button type="button" data-value="Currency" class="active">Currency</button>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Trading Style</label>
+                                                <div id="trading-style-group" class="form-btn-group grid grid-cols-2 gap-2">
+                                                    <button type="button" data-value="Scalping">Scalping</button>
+                                                    <button type="button" data-value="Intraday">Intraday</button>
+                                                    <button type="button" data-value="Swing">Swing</button>
+                                                    <button type="button" data-value="Position">Position</button>
+                                                    <button type="button" data-value="Long-Term" class="active col-span-2">Long-Term</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-6">
-                                    <!-- Symbol -->
-                                    <div class="relative">
-                                        <label for="asset-input" class="block text-sm font-medium" style="color: var(--text-secondary);">Symbol</label>
-                                        <input name="asset" type="text" id="asset-input" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="e.g. RELIANCE, NIFTY 50" required>
-                                        <div id="asset-suggestions" class="absolute z-10 w-full rounded-md mt-1 hidden max-h-48 overflow-y-auto" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"></div>
+                                     <!-- Risk & Strategy -->
+                                    <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                         <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Risk & Strategy</h3>
+                                         <div class="space-y-6">
+                                            <div><label for="stop-loss" class="block text-sm font-medium" style="color: var(--text-secondary);">Stop Loss</label><input name="stopLoss" type="number" step="any" id="stop-loss" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
+                                            <div><label for="target" class="block text-sm font-medium" style="color: var(--text-secondary);">Target Price</label><input name="target" type="number" step="any" id="target" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
+                                            <div><label for="strategy" class="block text-sm font-medium" style="color: var(--text-secondary);">Strategy Tag</label><select name="strategy" id="strategy" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Price Action</option><option>Trend Following</option><option>Nifty Breakout</option><option>Other</option></select></div>
+                                            <div><label for="outcome-summary" class="block text-sm font-medium" style="color: var(--text-secondary);">Outcome Summary</label><select name="outcomeSummary" id="outcome-summary" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Select Outcome Summary</option><option>Target Hit</option><option>Stop Loss Hit</option><option>Exited Early (Profit)</option><option>Exited Early (Loss)</option><option>Break Even</option></select></div>
+                                         </div>
                                     </div>
-                                    
-                                    <!-- Segment -->
-                                    <div>
-                                        <label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Segment</label>
-                                        <div id="segment-group" class="form-btn-group flex flex-wrap gap-2">
-                                            <button type="button" data-value="Equity">Equity</button>
-                                            <button type="button" data-value="F&O">F&O</button>
-                                            <button type="button" data-value="Commodity">Commodity</button>
-                                            <button type="button" data-value="Currency" class="active">Currency</button>
+                                    <!-- Financials -->
+                                    <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                        <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Financials</h3>
+                                        <div class="space-y-4">
+                                            <div class="flex justify-between items-center"><span class="text-sm" style="color: var(--text-secondary);">Total Amount</span><span id="total-amount" class="font-semibold" style="color: var(--text-primary);">₹0.00</span></div>
+                                            <div class="flex justify-between items-center"><span class="text-sm" style="color: var(--text-secondary);">Brokerage</span><input name="brokerage" type="number" step="any" id="brokerage" class="w-24 text-right rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
+                                            <div class="flex justify-between items-center"><span class="text-sm" style="color: var(--text-secondary);">Other Fees</span><input name="otherFees" type="number" step="any" id="other-fees" class="w-24 text-right rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
+                                            <div class="border-t my-2" style="border-color: var(--border-color);"></div>
+                                            <div class="flex justify-between items-center"><span class="text-sm font-bold" style="color: var(--text-secondary);">P&L Amount</span><span id="pnl-amount" class="font-bold text-lg" style="color: var(--text-primary);">₹0.00</span></div>
+                                            <div class="flex justify-between items-center"><span class="text-sm font-bold" style="color: var(--text-secondary);">P&L (%)</span><span id="pnl-percent" class="font-bold text-lg" style="color: var(--text-primary);">0.00%</span></div>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Direction -->
-                                <div class="mb-6">
-                                    <label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Direction</label>
-                                    <div id="direction-group" class="form-btn-group flex flex-wrap gap-2">
-                                        <button type="button" data-value="Long" class="active"><i data-feather="arrow-up" class="inline-block mr-2 h-4 w-4"></i>Long</button>
-                                        <button type="button" data-value="Short"><i data-feather="arrow-down" class="inline-block mr-2 h-4 w-4"></i>Short</button>
+                                <!-- Right Column -->
+                                <div class="lg:col-span-2 space-y-8">
+                                    <!-- Entry & Exit Section -->
+                                    <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                        <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Execution Details</h3>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+                                            <div><label for="entry-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Date & Time</label><input name="entryDate" type="datetime-local" id="entry-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" required></div>
+                                            <div><label for="exit-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Date & Time</label><input name="exitDate" type="datetime-local" id="exit-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"></div>
+                                            <div><label for="entry-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Price</label><input name="entryPrice" type="number" step="any" id="entry-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00" required></div>
+                                            <div><label for="exit-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Price</label><input name="exitPrice" type="number" step="any" id="exit-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
+                                            <div><label for="quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Quantity / Lot Size</label><input name="quantity" type="number" id="quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0" required></div>
+                                            <div><label for="exit-quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Quantity</label><input name="exitQuantity" type="number" id="exit-quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Qualitative Data -->
+                                    <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                         <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Trade Journal & Notes</h3>
+                                         <label for="reasons" class="block text-sm font-medium" style="color: var(--text-secondary);">Reasons for Entry/Exit, Learnings, etc.</label>
+                                         <textarea name="reasons" id="reasons" rows="5" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="What was your thesis for this trade? What did you learn?"></textarea>
                                     </div>
                                 </div>
-
-                                <!-- Financials Grid -->
-                                <div class="grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-4 items-end mb-6">
-                                    <!-- Entry Details -->
-                                    <div><label for="entry-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Date & Time</label><input name="entryDate" type="datetime-local" id="entry-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" required></div>
-                                    <div><label for="entry-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Price</label><input name="entryPrice" type="number" step="any" id="entry-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00" required></div>
-                                    <div><label for="quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Quantity / Lot Size</label><input name="quantity" type="number" id="quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0" required></div>
-                                    <div><label for="total-amount" class="block text-sm font-medium" style="color: var(--text-secondary);">Total Amount</label><input id="total-amount" type="text" class="mt-1 w-full rounded-md border" style="background-color: var(--bg-tertiary); color: var(--text-primary); border-color: var(--border-color);" value="₹0.00" readonly></div>
-                                    
-                                    <!-- Exit Details -->
-                                    <div><label for="exit-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Date & Time</label><input name="exitDate" type="datetime-local" id="exit-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"></div>
-                                    <div><label for="exit-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Price</label><input name="exitPrice" type="number" step="any" id="exit-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                    <div><label for="exit-quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Quantity</label><input name="exitQuantity" type="number" id="exit-quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0"></div>
-                                    <div class="grid grid-cols-2 gap-2">
-                                        <div><label for="pnl-amount" class="block text-sm font-medium" style="color: var(--text-secondary);">P&L Amount</label><input id="pnl-amount" type="text" class="mt-1 w-full rounded-md border" style="background-color: var(--bg-tertiary); color: var(--text-primary); border-color: var(--border-color);" value="₹0.00" readonly></div>
-                                        <div><label for="pnl-percent" class="block text-sm font-medium" style="color: var(--text-secondary);">P&L (%)</label><input id="pnl-percent" type="text" class="mt-1 w-full rounded-md border" style="background-color: var(--bg-tertiary); color: var(--text-primary); border-color: var(--border-color);" value="0.00%" readonly></div>
-                                    </div>
-
-                                    <!-- Risk and Fees -->
-                                    <div><label for="stop-loss" class="block text-sm font-medium" style="color: var(--text-secondary);">Stop Loss</label><input name="stopLoss" type="number" step="any" id="stop-loss" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                    <div><label for="target" class="block text-sm font-medium" style="color: var(--text-secondary);">Target Price</label><input name="target" type="number" step="any" id="target" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                    <div><label for="brokerage" class="block text-sm font-medium" style="color: var(--text-secondary);">Brokerage</label><input name="brokerage" type="number" step="any" id="brokerage" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                    <div><label for="other-fees" class="block text-sm font-medium" style="color: var(--text-secondary);">Other Fees</label><input name="otherFees" type="number" step="any" id="other-fees" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                </div>
-                                
-                                <!-- Dropdowns -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-6">
-                                    <div><label for="strategy" class="block text-sm font-medium" style="color: var(--text-secondary);">Strategy Tag</label><select name="strategy" id="strategy" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Price Action</option><option>Trend Following</option><option>Nifty Breakout</option><option>Other</option></select></div>
-                                    <div><label for="outcome-summary" class="block text-sm font-medium" style="color: var(--text-secondary);">Outcome Summary</label><select name="outcomeSummary" id="outcome-summary" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Select Outcome Summary</option><option>Target Hit</option><option>Stop Loss Hit</option><option>Exited Early (Profit)</option><option>Exited Early (Loss)</option><option>Break Even</option></select></div>
-                                </div>
-
-                                <!-- Qualitative Data -->
-                                <div class="mb-6">
-                                     <label for="reasons" class="block text-sm font-medium" style="color: var(--text-secondary);">Qualitative Data</label>
-                                     <textarea name="reasons" id="reasons" rows="3" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="Reasons for Entry/Exit (Optional)"></textarea>
-                                </div>
-
-                                <!-- Action Buttons -->
-                                <div class="flex justify-end gap-4">
-                                    <button type="button" id="clear-trade-form-btn" class="font-semibold py-2 px-6 rounded-md shadow-sm" style="background-color: var(--bg-tertiary); color: var(--text-secondary);">Reset</button>
-                                    <button type="submit" class="btn-primary font-semibold py-2 px-6 rounded-md shadow-sm flex items-center justify-center min-w-[120px]">
-                                        <span class="btn-text">Save Trade</span>
-                                        <span class="spinner hidden"></span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <!-- Action Buttons -->
+                            <div class="flex justify-end gap-4 pt-4 border-t" style="border-color: var(--border-color);">
+                                <button type="button" id="clear-trade-form-btn" class="font-semibold py-2 px-6 rounded-md shadow-sm" style="background-color: var(--bg-tertiary); color: var(--text-secondary);">Reset</button>
+                                <button type="submit" class="btn-primary font-semibold py-2 px-6 rounded-md shadow-sm flex items-center justify-center min-w-[120px]">
+                                    <span class="btn-text">Save Trade</span>
+                                    <span class="spinner hidden"></span>
+                                </button>
+                            </div>
+                        </form>
                     </div>
 
 
@@ -1786,8 +1796,8 @@
             const brokerage = parseFloat(document.getElementById('brokerage').value) || 0;
             const otherFees = parseFloat(document.getElementById('other-fees').value) || 0;
 
-            const totalAmount = (entryPrice * quantity) + brokerage + otherFees;
-            document.getElementById('total-amount').value = formatCurrency(totalAmount);
+            const totalAmount = (entryPrice * quantity);
+            document.getElementById('total-amount').textContent = formatCurrency(totalAmount);
 
             const exitPrice = parseFloat(document.getElementById('exit-price').value) || 0;
             const exitQuantity = parseInt(document.getElementById('exit-quantity').value, 10) || quantity;
@@ -1796,11 +1806,23 @@
             if (exitPrice > 0 && entryPrice > 0 && exitQuantity > 0) {
                 const pnlAmount = (exitPrice - entryPrice) * exitQuantity * (direction === 'Short' ? -1 : 1);
                 const pnlPercent = (pnlAmount / (entryPrice * exitQuantity)) * 100;
-                document.getElementById('pnl-amount').value = formatCurrency(pnlAmount);
-                document.getElementById('pnl-percent').value = `${pnlPercent.toFixed(2)}%`;
+                
+                const pnlAmountEl = document.getElementById('pnl-amount');
+                pnlAmountEl.textContent = formatCurrency(pnlAmount);
+                pnlAmountEl.className = `font-bold text-lg ${pnlAmount >= 0 ? 'text-green-500' : 'text-red-500'}`;
+                
+                const pnlPercentEl = document.getElementById('pnl-percent');
+                pnlPercentEl.textContent = `${pnlPercent.toFixed(2)}%`;
+                pnlPercentEl.className = `font-bold text-lg ${pnlPercent >= 0 ? 'text-green-500' : 'text-red-500'}`;
+
             } else {
-                document.getElementById('pnl-amount').value = formatCurrency(0);
-                document.getElementById('pnl-percent').value = '0.00%';
+                const pnlAmountEl = document.getElementById('pnl-amount');
+                pnlAmountEl.textContent = formatCurrency(0);
+                pnlAmountEl.className = `font-bold text-lg`;
+                
+                const pnlPercentEl = document.getElementById('pnl-percent');
+                pnlPercentEl.textContent = '0.00%';
+                pnlPercentEl.className = `font-bold text-lg`;
             }
         };
         
@@ -1881,8 +1903,8 @@
                 segment: document.querySelector('#segment-group .active')?.dataset.value,
                 direction: document.querySelector('#direction-group .active')?.dataset.value,
                 exitQuantity: document.getElementById('exit-quantity').value ? parseInt(document.getElementById('exit-quantity').value, 10) : null,
-                pnlAmount: parseFloat(document.getElementById('pnl-amount').value.replace('₹', '').replace(/,/g, '')) || 0,
-                pnlPercent: parseFloat(document.getElementById('pnl-percent').value.replace('%', '')) || 0,
+                pnlAmount: parseFloat(document.getElementById('pnl-amount').textContent.replace(/[₹,]/g, '')) || 0,
+                pnlPercent: parseFloat(document.getElementById('pnl-percent').textContent.replace('%', '')) || 0,
                 outcomeSummary: document.getElementById('outcome-summary').value,
                 
                 // Existing Fields (for backward compatibility and core logic)
@@ -3442,6 +3464,9 @@
     </script>
 </body>
 </html>
+
+
+
 
 
 
