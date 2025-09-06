@@ -604,6 +604,12 @@
                                 <h3 class="font-semibold mb-4" style="color: var(--text-primary);">Daily Win Rate vs Average Win Rate</h3>
                                 <canvas id="dailyWinRateChart"></canvas>
                             </div>
+
+                             <!-- Strategy vs P&L Chart -->
+                            <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                <h3 class="font-semibold mb-4" style="color: var(--text-primary);">Strategy vs P&L</h3>
+                                <canvas id="strategyPnlChart"></canvas>
+                            </div>
                         </div>
                     </div>
 
@@ -2766,7 +2772,8 @@
                 chartRed: '#f87171',
                 chartGreen: '#4ade80',
                 teal: '#2dd4bf',
-                orange: '#f97316'
+                orange: '#f97316',
+                accent: htmlStyles.getPropertyValue('--accent-color').trim(),
             };
         };
 
@@ -3166,6 +3173,36 @@
                     }
                 });
             }
+
+            // --- Strategy vs P&L Chart ---
+            const strategyCtx = document.getElementById('strategyPnlChart')?.getContext('2d');
+            const pnlByStrategy = {};
+            closedTrades.forEach(trade => {
+                const pnl = calculateNetPnl(trade);
+                const strategy = trade.strategy || 'Other';
+                if (!pnlByStrategy[strategy]) pnlByStrategy[strategy] = 0;
+                pnlByStrategy[strategy] += pnl;
+            });
+             createChart(strategyCtx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(pnlByStrategy),
+                    datasets: [{
+                        label: 'Net P&L',
+                        data: Object.values(pnlByStrategy),
+                        backgroundColor: (context) => context.raw >= 0 ? colors.accent : colors.red,
+                        borderRadius: 6,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { ticks: { color: colors.textColor }, grid: { display: false } },
+                        y: { ticks: { color: colors.textColor, callback: (value) => formatCurrency(value) }, grid: { color: colors.gridColor } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
         }
         
         // --- SCROLL TO TOP ---
@@ -3187,4 +3224,8 @@
     </script>
 </body>
 </html>
+
+
+
+
 
