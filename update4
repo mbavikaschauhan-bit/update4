@@ -663,31 +663,45 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Financials -->
-                                    <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                        <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Financials</h3>
-                                        <div class="space-y-4">
-                                            <div class="flex justify-between items-center"><span class="text-sm" style="color: var(--text-secondary);">Total Amount</span><span id="total-amount" class="font-semibold" style="color: var(--text-primary);">₹0.00</span></div>
-                                            <div class="flex justify-between items-center"><span class="text-sm" style="color: var(--text-secondary);">Brokerage</span><input name="brokerage" type="number" step="any" id="brokerage" class="w-24 text-right rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                            <div class="flex justify-between items-center"><span class="text-sm" style="color: var(--text-secondary);">Other Fees</span><input name="otherFees" type="number" step="any" id="other-fees" class="w-24 text-right rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                            <div class="border-t my-2" style="border-color: var(--border-color);"></div>
-                                            <div class="flex justify-between items-center"><span class="text-sm font-bold" style="color: var(--text-secondary);">P&L Amount</span><span id="pnl-amount" class="font-bold text-lg" style="color: var(--text-primary);">₹0.00</span></div>
-                                            <div class="flex justify-between items-center"><span class="text-sm font-bold" style="color: var(--text-secondary);">P&L (%)</span><span id="pnl-percent" class="font-bold text-lg" style="color: var(--text-primary);">0.00%</span></div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <!-- Right Column -->
                                 <div class="lg:col-span-2 space-y-8">
                                     <!-- Entry & Exit Section -->
                                     <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
                                         <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Execution Details</h3>
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
-                                            <div><label for="entry-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Date & Time</label><input name="entryDate" type="datetime-local" id="entry-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" required></div>
-                                            <div><label for="exit-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Date & Time</label><input name="exitDate" type="datetime-local" id="exit-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"></div>
-                                            <div><label for="entry-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Price</label><input name="entryPrice" type="number" step="any" id="entry-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00" required></div>
-                                            <div><label for="exit-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Price</label><input name="exitPrice" type="number" step="any" id="exit-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                            <div><label for="quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Quantity</label><input name="quantity" type="number" id="quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0" required></div>
-                                            <div><label for="exit-quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Quantity</label><input name="exitQuantity" type="number" id="exit-quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0"></div>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                                            <!-- Entry Column -->
+                                            <div class="space-y-6">
+                                                <div><label for="entry-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Date & Time</label><input name="entryDate" type="datetime-local" id="entry-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" required></div>
+                                                <div><label for="entry-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Price</label><input name="entryPrice" type="number" step="any" id="entry-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00" required></div>
+                                                <div><label for="quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Quantity</label><input name="quantity" type="number" id="quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0" required></div>
+                                                <div class="border-t pt-4" style="border-color: var(--border-color);">
+                                                    <div class="flex justify-between items-center">
+                                                        <span class="text-sm font-semibold" style="color: var(--text-secondary);">Total Amount</span>
+                                                        <span id="total-amount" class="font-bold text-lg" style="color: var(--text-primary);">₹0.00</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Exit Column -->
+                                            <div class="space-y-6">
+                                                <div><label for="exit-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Date & Time</label><input name="exitDate" type="datetime-local" id="exit-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"></div>
+                                                <div><label for="exit-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Price</label><input name="exitPrice" type="number" step="any" id="exit-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
+                                                <div><label for="exit-quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Quantity</label><input name="exitQuantity" type="number" id="exit-quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0"></div>
+                                                <div><label for="brokerage" class="block text-sm font-medium" style="color: var(--text-secondary);">Brokerage</label><input name="brokerage" type="number" step="any" id="brokerage" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
+                                                <div><label for="other-fees" class="block text-sm font-medium" style="color: var(--text-secondary);">Charges</label><input name="otherFees" type="number" step="any" id="other-fees" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
+                                                <div class="border-t pt-4" style="border-color: var(--border-color);">
+                                                    <div class="space-y-2">
+                                                        <div class="flex justify-between items-center">
+                                                            <span class="text-sm font-bold" style="color: var(--text-secondary);">P&L Amount</span>
+                                                            <span id="pnl-amount" class="font-bold text-lg" style="color: var(--text-primary);">₹0.00</span>
+                                                        </div>
+                                                        <div class="flex justify-between items-center">
+                                                            <span class="text-sm font-bold" style="color: var(--text-secondary);">P&L (%)</span>
+                                                            <span id="pnl-percent" class="font-bold text-lg" style="color: var(--text-primary);">0.00%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                      <!-- Risk & Strategy -->
@@ -3468,6 +3482,10 @@
     </script>
 </body>
 </html>
+
+
+
+
 
 
 
