@@ -663,16 +663,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                     <!-- Risk & Strategy -->
-                                    <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                         <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Risk & Strategy</h3>
-                                         <div class="space-y-6">
-                                            <div><label for="stop-loss" class="block text-sm font-medium" style="color: var(--text-secondary);">Stop Loss</label><input name="stopLoss" type="number" step="any" id="stop-loss" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                            <div><label for="target" class="block text-sm font-medium" style="color: var(--text-secondary);">Target Price</label><input name="target" type="number" step="any" id="target" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                            <div><label for="strategy" class="block text-sm font-medium" style="color: var(--text-secondary);">Strategy Tag</label><select name="strategy" id="strategy" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Price Action</option><option>Trend Following</option><option>Nifty Breakout</option><option>Other</option></select></div>
-                                            <div><label for="outcome-summary" class="block text-sm font-medium" style="color: var(--text-secondary);">Outcome Summary</label><select name="outcomeSummary" id="outcome-summary" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Select Outcome Summary</option><option>Target Hit</option><option>Stop Loss Hit</option><option>Exited Early (Profit)</option><option>Exited Early (Loss)</option><option>Break Even</option></select></div>
-                                         </div>
-                                    </div>
                                     <!-- Financials -->
                                     <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
                                         <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Financials</h3>
@@ -696,9 +686,23 @@
                                             <div><label for="exit-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Date & Time</label><input name="exitDate" type="datetime-local" id="exit-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"></div>
                                             <div><label for="entry-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Price</label><input name="entryPrice" type="number" step="any" id="entry-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00" required></div>
                                             <div><label for="exit-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Price</label><input name="exitPrice" type="number" step="any" id="exit-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
-                                            <div><label for="quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Quantity / Lot Size</label><input name="quantity" type="number" id="quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0" required></div>
+                                            <div><label for="quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Quantity</label><input name="quantity" type="number" id="quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0" required></div>
                                             <div><label for="exit-quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Quantity</label><input name="exitQuantity" type="number" id="exit-quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0"></div>
                                         </div>
+                                    </div>
+                                     <!-- Risk & Strategy -->
+                                    <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
+                                         <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Risk & Strategy</h3>
+                                         <div class="space-y-6">
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div><label for="stop-loss" class="block text-sm font-medium" style="color: var(--text-secondary);">Stop Loss</label><input name="stopLoss" type="number" step="any" id="stop-loss" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
+                                                <div><label for="target" class="block text-sm font-medium" style="color: var(--text-secondary);">Target Price</label><input name="target" type="number" step="any" id="target" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
+                                            </div>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div><label for="strategy" class="block text-sm font-medium" style="color: var(--text-secondary);">Strategy Tag</label><select name="strategy" id="strategy" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Price Action</option><option>Trend Following</option><option>Nifty Breakout</option><option>Other</option></select></div>
+                                                <div><label for="outcome-summary" class="block text-sm font-medium" style="color: var(--text-secondary);">Outcome Summary</label><select name="outcomeSummary" id="outcome-summary" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Select Outcome Summary</option><option>Target Hit</option><option>Stop Loss Hit</option><option>Exited Early (Profit)</option><option>Exited Early (Loss)</option><option>Break Even</option></select></div>
+                                            </div>
+                                         </div>
                                     </div>
                                     <!-- Qualitative Data -->
                                     <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
@@ -3464,6 +3468,11 @@
     </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
