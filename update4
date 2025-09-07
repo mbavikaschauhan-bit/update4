@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             /* Light Theme (Default) */
@@ -429,7 +429,7 @@
             border-color: #cc0000;
         }
 
-        /* Segment & Style Button Styles */
+        /* Segment &amp; Style Button Styles */
         #segment-group button,
         #trading-style-group button {
             background-color: #d3d3d3;
@@ -526,7 +526,7 @@
                         <!-- Performance Stats -->
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                             <div class="p-5 rounded-lg shadow-sm text-center" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                <h3 class="text-sm font-medium" style="color: var(--text-secondary);">Net P&L</h3>
+                                <h3 class="text-sm font-medium" style="color: var(--text-secondary);">Net P&amp;L</h3>
                                 <p id="db-net-pnl" class="text-2xl font-bold mt-2" style="color: var(--text-primary);">₹0.00</p>
                                 <p id="db-total-trades" class="text-xs" style="color: var(--text-muted);">0 trades</p>
                             </div>
@@ -541,7 +541,7 @@
                             <div class="p-5 rounded-lg shadow-sm text-center" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
                                 <h3 class="text-sm font-medium" style="color: var(--text-secondary);">Profit Factor</h3>
                                 <p id="db-profit-factor" class="text-2xl font-bold mt-2" style="color: var(--text-primary);">0.00</p>
-                                <p class="text-xs" style="color: var(--text-muted);">Gross P&L split</p>
+                                <p class="text-xs" style="color: var(--text-muted);">Gross P&amp;L split</p>
                             </div>
                             <div class="p-5 rounded-lg shadow-sm text-center" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
                                 <h3 class="text-sm font-medium" style="color: var(--text-secondary);">Avg win/loss trade</h3>
@@ -558,7 +558,7 @@
                             <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary);">Account Summary</h3>
                             <div id="db-account-summary" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                                 <div><p class="text-sm" style="color: var(--text-secondary);">NET ACCOUNT VALUE</p><p class="text-2xl font-bold" style="color: var(--text-primary);">₹0.00</p></div>
-                                <div><p class="text-sm" style="color: var(--text-secondary);">NET REALIZED P&L</p><p class="text-2xl font-bold" style="color: var(--text-primary);">₹0.00</p></div>
+                                <div><p class="text-sm" style="color: var(--text-secondary);">NET REALIZED P&amp;L</p><p class="text-2xl font-bold" style="color: var(--text-primary);">₹0.00</p></div>
                                 <div><p class="text-sm" style="color: var(--text-secondary);">AVAILABLE CASH</p><p class="text-2xl font-bold" style="color: var(--text-primary);">₹0.00</p></div>
                                 <div><p class="text-sm" style="color: var(--text-secondary);">DEPLOYED CAPITAL</p><p class="text-2xl font-bold" style="color: var(--text-primary);">₹0.00</p></div>
                                 <div><p class="text-sm" style="color: var(--text-secondary);">TOTAL DEPOSITS</p><p class="text-2xl font-bold" style="color: var(--text-primary);">₹0.00</p></div>
@@ -596,7 +596,7 @@
                             </div>
                              <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
                                 <h3 class="font-semibold" style="color: var(--text-primary);">Monthly Performance</h3>
-                                <p class="text-sm" style="color: var(--text-secondary);">Your P&L broken down by month</p>
+                                <p class="text-sm" style="color: var(--text-secondary);">Your P&amp;L broken down by month</p>
                                 <canvas id="monthlyPerformanceChart"></canvas>
                             </div>
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -605,7 +605,7 @@
                                     <canvas id="equityCurveChart"></canvas>
                                 </div>
                                 <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                    <h3 class="font-semibold mb-4" style="color: var(--text-primary);">P&L by Segment</h3>
+                                    <h3 class="font-semibold mb-4" style="color: var(--text-primary);">P&amp;L by Segment</h3>
                                     <canvas id="pnlBySegmentChart"></canvas>
                                 </div>
                             </div>
@@ -622,12 +622,12 @@
                                     <canvas id="performanceByDayChart"></canvas>
                                 </div>
                             </div>
-                            <!-- Daily P&L Chart -->
+                            <!-- Daily P&amp;L Chart -->
                             <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                <h3 class="font-semibold mb-4" style="color: var(--text-primary);">Daily P&L</h3>
+                                <h3 class="font-semibold mb-4" style="color: var(--text-primary);">Daily P&amp;L</h3>
                                 <div class="relative h-64">
                                      <canvas id="dailyPnlChart"></canvas>
-                                     <p id="dailyPnlMessage" class="hidden absolute inset-0 flex items-center justify-center" style="color: var(--text-muted);">No P&L data yet</p>
+                                     <p id="dailyPnlMessage" class="hidden absolute inset-0 flex items-center justify-center" style="color: var(--text-muted);">No P&amp;L data yet</p>
                                 </div>
                             </div>
                             <!-- ADDED: New Chart for Daily Win Rate -->
@@ -636,9 +636,9 @@
                                 <canvas id="dailyWinRateChart"></canvas>
                             </div>
 
-                             <!-- Strategy vs P&L Chart -->
+                             <!-- Strategy vs P&amp;L Chart -->
                             <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                <h3 class="font-semibold mb-4" style="color: var(--text-primary);">Strategy vs P&L</h3>
+                                <h3 class="font-semibold mb-4" style="color: var(--text-primary);">Strategy vs P&amp;L</h3>
                                 <canvas id="strategyPnlChart"></canvas>
                             </div>
                         </div>
@@ -677,7 +677,7 @@
                                                 <label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">Segment</label>
                                                 <div id="segment-group" class="form-btn-group grid grid-cols-2 gap-2">
                                                     <button type="button" data-value="Equity">Equity</button>
-                                                    <button type="button" data-value="F&O">F&O</button>
+                                                    <button type="button" data-value="F&amp;O">F&amp;O</button>
                                                     <button type="button" data-value="Commodity" class="flex items-center justify-center">Commodity</button>
                                                     <button type="button" data-value="Currency">Currency</button>
                                                 </div>
@@ -697,13 +697,13 @@
                                 </div>
                                 <!-- Right Column -->
                                 <div class="lg:col-span-2 space-y-8">
-                                    <!-- Entry & Exit Section -->
+                                    <!-- Entry &amp; Exit Section -->
                                     <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
                                         <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Execution Details</h3>
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                                             <!-- Entry Column -->
                                             <div class="space-y-6">
-                                                <div><label for="entry-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Date & Time</label><input name="entryDate" type="datetime-local" id="entry-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" required></div>
+                                                <div><label for="entry-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Date &amp; Time</label><input name="entryDate" type="datetime-local" id="entry-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" required></div>
                                                 <div><label for="entry-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Price</label><input name="entryPrice" type="number" step="any" id="entry-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00" required></div>
                                                 <div><label for="quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Entry Quantity</label><input name="quantity" type="number" id="quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0" required></div>
                                                 <div>
@@ -733,27 +733,27 @@
                                             </div>
                                             <!-- Exit Column -->
                                             <div class="space-y-6">
-                                                <div><label for="exit-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Date & Time</label><input name="exitDate" type="datetime-local" id="exit-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"></div>
+                                                <div><label for="exit-date" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Date &amp; Time</label><input name="exitDate" type="datetime-local" id="exit-date" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"></div>
                                                 <div><label for="exit-price" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Price</label><input name="exitPrice" type="number" step="any" id="exit-price" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
                                                 <div><label for="exit-quantity" class="block text-sm font-medium" style="color: var(--text-secondary);">Exit Quantity</label><input name="exitQuantity" type="number" id="exit-quantity" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0"></div>
                                                 <div><label for="brokerage" class="block text-sm font-medium" style="color: var(--text-secondary);">Brokerage</label><input name="brokerage" type="number" step="any" id="brokerage" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
                                                 <div><label for="other-fees" class="block text-sm font-medium" style="color: var(--text-secondary);">Charges</label><input name="otherFees" type="number" step="any" id="other-fees" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="0.00"></div>
                                                 <div class="p-3 rounded-lg space-y-2" style="background-color: var(--bg-secondary);">
                                                     <div class="flex justify-between items-center">
-                                                        <span class="text-sm font-medium" style="color: var(--text-muted);">P&L Amount</span>
+                                                        <span class="text-sm font-medium" style="color: var(--text-muted);">P&amp;L Amount</span>
                                                         <span id="pnl-amount" class="font-bold text-lg" style="color: var(--text-primary);">₹0.00</span>
                                                     </div>
                                                     <div class="flex justify-between items-center">
-                                                        <span class="text-sm font-medium" style="color: var(--text-muted);">P&L (%)</span>
+                                                        <span class="text-sm font-medium" style="color: var(--text-muted);">P&amp;L (%)</span>
                                                         <span id="pnl-percent" class="font-bold text-lg" style="color: var(--text-primary);">0.00%</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                     <!-- Risk & Strategy -->
+                                     <!-- Risk &amp; Strategy -->
                                     <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                         <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Risk & Strategy</h3>
+                                         <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Risk &amp; Strategy</h3>
                                          <div class="space-y-6">
                                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                 <div><label for="strategy" class="block text-sm font-medium" style="color: var(--text-secondary);">Strategy Tag</label><select name="strategy" id="strategy" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"><option>Price Action</option><option>Trend Following</option><option>Nifty Breakout</option><option>Other</option></select></div>
@@ -763,7 +763,7 @@
                                     </div>
                                     <!-- Qualitative Data -->
                                     <div class="p-6 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);">
-                                         <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Trade Journal & Notes</h3>
+                                         <h3 class="text-xl font-semibold mb-6 border-b pb-4" style="color: var(--text-primary); border-color: var(--border-color);">Trade Journal &amp; Notes</h3>
                                          <label for="reasons" class="block text-sm font-medium" style="color: var(--text-secondary);">Reasons for Entry/Exit, Learnings, etc.</label>
                                          <textarea name="reasons" id="reasons" rows="5" class="mt-1 w-full rounded-md border focus:border-blue-500 focus:ring-blue-500" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);" placeholder="What was your thesis for this trade? What did you learn?"></textarea>
                                     </div>
@@ -792,7 +792,7 @@
                                 <thead class="text-xs uppercase" style="background-color: var(--bg-secondary); color: var(--text-secondary);">
                                     <tr>
                                         <th scope="col" class="px-6 py-3">Symbol</th>
-                                        <th scope="col" class="px-6 py-3">Net P&L</th>
+                                        <th scope="col" class="px-6 py-3">Net P&amp;L</th>
                                         <th scope="col" class="px-6 py-3">Status</th>
                                         <th scope="col" class="px-6 py-3">Entry Price</th>
                                         <th scope="col" class="px-6 py-3">Type</th>
@@ -840,7 +840,7 @@
                                         <i data-feather="chevron-right" class="h-6 w-6"></i>
                                     </button>
                                 </div>
-                                <div id="monthly-pnl-display" class="font-semibold" style="color: var(--text-primary);">Monthly P&L: ₹0.00</div>
+                                <div id="monthly-pnl-display" class="font-semibold" style="color: var(--text-primary);">Monthly P&amp;L: ₹0.00</div>
                             </div>
                             <div class="overflow-x-auto">
                                 <div class="min-w-[950px]">
@@ -1145,15 +1145,15 @@
                 <p class="text-sm mt-2 mb-6" style="color: var(--text-secondary);">The more you write, the more you grow. Stay focused!</p>
 
                 <div class="p-4 rounded-lg" style="background-color: var(--bg-secondary);">
-                    <h4 class="font-semibold text-md mb-4" style="color: var(--text-primary);">Comparison with Previous Day's P&L</h4>
+                    <h4 class="font-semibold text-md mb-4" style="color: var(--text-primary);">Comparison with Previous Day's P&amp;L</h4>
                     <div class="flex justify-around items-center mb-4">
                         <div>
-                            <p class="text-xs" style="color: var(--text-muted);">Today's P&L</p>
+                            <p class="text-xs" style="color: var(--text-muted);">Today's P&amp;L</p>
                             <p id="tsm-today-pnl" class="font-bold text-lg text-green-500">+₹0.00</p>
                         </div>
                         <div class="border-l h-10" style="border-color: var(--border-color);"></div>
                         <div>
-                            <p class="text-xs" style="color: var(--text-muted);">Yesterday's P&L</p>
+                            <p class="text-xs" style="color: var(--text-muted);">Yesterday's P&amp;L</p>
                             <p id="tsm-yesterday-pnl" class="font-bold text-lg text-green-500">+₹0.00</p>
                         </div>
                     </div>
@@ -1285,7 +1285,7 @@
                  <div class="modal-stats-grid">
                      <div class="stat-card">
                          <div>
-                             <p class="stat-card-label">Total P&L</p>
+                             <p class="stat-card-label">Total P&amp;L</p>
                              <p id="modal-total-pnl" class="stat-card-value">₹0.00</p>
                          </div>
                          <div class="stat-card-icon" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e;"><i data-feather="trending-up"></i></div>
@@ -1321,7 +1321,7 @@
                                 <th>Size</th>
                                 <th>Entry</th>
                                 <th>Exit</th>
-                                <th>P&L</th>
+                                <th>P&amp;L</th>
                             </tr>
                         </thead>
                         <tbody id="modal-trades-tbody">
@@ -1835,7 +1835,7 @@
             const summaryTextClasses = "text-2xl font-bold";
             summaryEl.innerHTML = `
                 <div><p class="text-sm" style="color: var(--text-secondary);">NET ACCOUNT VALUE</p><p class="${summaryTextClasses} ${accountValue >= 0 ? 'text-green-500' : 'text-red-500'}">${formatCurrency(accountValue)}</p></div>
-                <div><p class="text-sm" style="color: var(--text-secondary);">NET REALIZED P&L</p><p class="${summaryTextClasses} ${netPnl >= 0 ? 'text-green-500' : 'text-red-500'}">${formatCurrency(netPnl)}</p></div>
+                <div><p class="text-sm" style="color: var(--text-secondary);">NET REALIZED P&amp;L</p><p class="${summaryTextClasses} ${netPnl >= 0 ? 'text-green-500' : 'text-red-500'}">${formatCurrency(netPnl)}</p></div>
                 <div><p class="text-sm" style="color: var(--text-secondary);">AVAILABLE CASH</p><p class="${summaryTextClasses}">${formatCurrency(availableCash)}</p></div>
                 <div><p class="text-sm" style="color: var(--text-secondary);">DEPLOYED CAPITAL</p><p class="${summaryTextClasses}">${formatCurrency(deployedCapital)}</p></div>
                 <div><p class="text-sm" style="color: var(--text-secondary);">TOTAL DEPOSITS</p><p class="${summaryTextClasses}">${formatCurrency(deposits)}</p></div>
@@ -1928,7 +1928,7 @@
                     } else {
                         button.classList.add('active-short');
                     }
-                    updateCalculations(); // Recalculate P&L on direction change
+                    updateCalculations(); // Recalculate P&amp;L on direction change
                 } else if (group.id === 'segment-group' || group.id === 'trading-style-group') {
                     group.querySelectorAll('button').forEach(btn => btn.classList.remove('active-green'));
                     button.classList.add('active-green');
@@ -2254,7 +2254,7 @@
             const statTextClasses = "text-2xl font-bold mt-2";
             statsGrid.innerHTML = `
                 <div class="p-5 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"><h3 class="text-sm font-medium" style="color: var(--text-secondary);">Net Account Value</h3><p class="${statTextClasses} ${accountValue >=0 ? 'text-green-500' : 'text-red-500'}">${formatCurrency(accountValue)}</p></div>
-                <div class="p-5 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"><h3 class="text-sm font-medium" style="color: var(--text-secondary);">Net Realised P&L</h3><p class="${statTextClasses} ${netPnl >=0 ? 'text-green-500' : 'text-red-500'}">${formatCurrency(netPnl)}</p></div>
+                <div class="p-5 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"><h3 class="text-sm font-medium" style="color: var(--text-secondary);">Net Realised P&amp;L</h3><p class="${statTextClasses} ${netPnl >=0 ? 'text-green-500' : 'text-red-500'}">${formatCurrency(netPnl)}</p></div>
                 <div class="p-5 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"><h3 class="text-sm font-medium" style="color: var(--text-secondary);">Total Deposits</h3><p class="${statTextClasses}">${formatCurrency(deposits)}</p></div>
                 <div class="p-5 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"><h3 class="text-sm font-medium" style="color: var(--text-secondary);">Total Withdrawn</h3><p class="${statTextClasses}">${formatCurrency(withdrawals)}</p></div>
                 <div class="p-5 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"><h3 class="text-sm font-medium" style="color: var(--text-secondary);">Deployed Capital</h3><p class="${statTextClasses}">${formatCurrency(deployedCapital)}</p></div>
@@ -2446,7 +2446,7 @@
 
                 statsGrid.innerHTML = `
                     <div class="p-5 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"><h3 class="text-sm font-medium" style="color: var(--text-secondary);">Total Trades</h3><p class="text-2xl font-bold mt-2" style="color: var(--text-primary);">${totalTrades}</p></div>
-                    <div class="p-5 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"><h3 class="text-sm font-medium" style="color: var(--text-secondary);">Net P&L</h3><p class="text-2xl font-bold mt-2 ${netPnl >= 0 ? 'text-green-500' : 'text-red-500'}">${formatCurrency(netPnl)}</p></div>
+                    <div class="p-5 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"><h3 class="text-sm font-medium" style="color: var(--text-secondary);">Net P&amp;L</h3><p class="text-2xl font-bold mt-2 ${netPnl >= 0 ? 'text-green-500' : 'text-red-500'}">${formatCurrency(netPnl)}</p></div>
                     <div class="p-5 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"><h3 class="text-sm font-medium" style="color: var(--text-secondary);">Win Rate</h3><p class="text-2xl font-bold mt-2" style="color: var(--text-primary);">${winRate.toFixed(1)}%</p></div>
                     <div class="p-5 rounded-lg shadow-sm" style="background-color: var(--bg-primary); border: 1px solid var(--border-color);"><h3 class="text-sm font-medium" style="color: var(--text-secondary);">Best Day</h3><p class="text-2xl font-bold text-green-500 mt-2">${formatCurrency(bestDayPnl)}</p>${bestDayDate ? `<p class="text-xs" style="color: var(--text-muted);">${new Date(year, month, bestDayDate).toLocaleString('default', { month: 'short' })} ${bestDayDate}</p>` : ''}</div>
                 `;
@@ -2553,7 +2553,7 @@
                 calendarSummariesGrid.appendChild(summaryDiv);
             });
             
-            monthlyPnlDisplay.textContent = `Monthly P&L: ${formatCurrency(monthlyPnl)}`;
+            monthlyPnlDisplay.textContent = `Monthly P&amp;L: ${formatCurrency(monthlyPnl)}`;
             monthlyPnlDisplay.className = `font-semibold ${monthlyPnl > 0 ? 'text-green-500' : monthlyPnl < 0 ? 'text-red-500' : ''}`;
             feather.replace();
         };
@@ -3213,7 +3213,7 @@
                 data: {
                     labels: closedTrades.map((_, i) => `Trade ${i + 1}`),
                     datasets: [{
-                        label: 'Cumulative P&L',
+                        label: 'Cumulative P&amp;L',
                         data: [0, ...equityData],
                         borderColor: colors.primary,
                         backgroundColor: 'rgba(59, 130, 246, 0.1)',
@@ -3244,7 +3244,7 @@
                 data: {
                     labels: Object.keys(monthlyPnl),
                     datasets: [{
-                        label: 'Monthly P&L',
+                        label: 'Monthly P&amp;L',
                         data: Object.values(monthlyPnl),
                         backgroundColor: (context) => context.raw >= 0 ? colors.green : colors.red,
                         borderRadius: 4,
@@ -3260,7 +3260,7 @@
                 }
             });
 
-             // --- P&L by Segment Chart ---
+             // --- P&amp;L by Segment Chart ---
             const segmentCtx = document.getElementById('pnlBySegmentChart')?.getContext('2d');
             const pnlBySegment = {};
             closedTrades.forEach(trade => {
@@ -3274,7 +3274,7 @@
                 data: {
                     labels: Object.keys(pnlBySegment),
                     datasets: [{
-                        label: 'Net P&L',
+                        label: 'Net P&amp;L',
                         data: Object.values(pnlBySegment),
                         backgroundColor: [colors.primary, colors.green, colors.red, colors.orange, colors.teal],
                     }]
@@ -3295,7 +3295,7 @@
                 data: {
                     labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                     datasets: [{
-                        label: 'P&L',
+                        label: 'P&amp;L',
                         data: pnlByDay,
                         backgroundColor: (context) => context.raw >= 0 ? colors.chartGreen : colors.chartRed,
                     }]
@@ -3365,7 +3365,7 @@
                 }
             }
 
-            // --- Daily P&L Chart ---
+            // --- Daily P&amp;L Chart ---
             const dailyPnlCtx = document.getElementById('dailyPnlChart')?.getContext('2d');
             const dailyPnlCanvas = document.getElementById('dailyPnlChart');
             const dailyPnlMessage = document.getElementById('dailyPnlMessage');
@@ -3404,7 +3404,7 @@
                         data: {
                             labels: dailyPnlLabels,
                             datasets: [{
-                                label: 'Daily P&L',
+                                label: 'Daily P&amp;L',
                                 data: dailyPnlData,
                                 backgroundColor: (context) => context.raw >= 0 ? colors.green : colors.red,
                                 borderRadius: 2
@@ -3426,7 +3426,7 @@
                                         },
                                         label: function(context) {
                                             let pnl = context.raw;
-                                            return `P&L: ${formatCurrency(pnl)}`;
+                                            return `P&amp;L: ${formatCurrency(pnl)}`;
                                         }
                                     }
                                 }
@@ -3525,7 +3525,7 @@
                 });
             }
 
-            // --- Strategy vs P&L Chart ---
+            // --- Strategy vs P&amp;L Chart ---
             const strategyCtx = document.getElementById('strategyPnlChart')?.getContext('2d');
             const pnlByStrategy = {};
             closedTrades.forEach(trade => {
@@ -3539,7 +3539,7 @@
                 data: {
                     labels: Object.keys(pnlByStrategy),
                     datasets: [{
-                        label: 'Net P&L',
+                        label: 'Net P&amp;L',
                         data: Object.values(pnlByStrategy),
                         backgroundColor: (context) => context.raw >= 0 ? colors.accent : colors.red,
                         borderRadius: 6,
@@ -3575,33 +3575,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
